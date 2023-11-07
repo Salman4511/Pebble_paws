@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter_my_dog/models/dog_model.dart';
 import 'package:flutter_my_dog/models/event_model.dart';
 import 'package:flutter_my_dog/models/user_model.dart';
@@ -26,7 +27,6 @@ List fullname=[name,secondname];
 String newName=fullname.join(' ');
 String id=auth.currentUser!.uid;
 UserModel user=UserModel(id: id,fullname: newName, address: address, profile: userprofile, phone: phone);
-print(newName);
 try {
     print("the function is called");
 
@@ -71,7 +71,7 @@ try {
 
 addDogToDB(String name,String dob, String month,String breed,)async{
   String id=DateTime.now().microsecondsSinceEpoch.toString();
-DogModel dog= DogModel( id: id,profile: dogprofile, name: name, dob: dob, month: month, breed: breed, certificate: certificate);
+DogModel dog= DogModel( id: id,profile: dogprofile, name: name, dob: dob, month: month, breed: breed, certificate: certificate,updateTym: "",training: []);
 try {
     print("the function is called");
 
@@ -80,6 +80,8 @@ await firestore.collection("dogs").doc(auth.currentUser?.uid).collection('thisUs
   print("the error is found $e");
 }
 }
+
+
 List<DogModel> thisUserDogsList=[];
 getDogFromDB()async{
   
@@ -103,20 +105,61 @@ deleteDogFromDB(String id)async{
 }
 
 updateDog(String id, String name,String dob,String month, String breed,String dogProfile,String Certificate)async{
-
+  try {
+final getDog=await firestore.collection("dogs").doc(auth.currentUser?.uid).collection("thisUsersDogs").doc(id).get();
+var thisDogData=getDog.data();
+var updatTym=thisDogData!['last_update_time'];
+var traininglist=[0.01]+thisDogData['training'];
 
   String dogcertificate='';
 String profile='';
 certificate==''? dogcertificate=Certificate:dogcertificate=certificate;
+
 dogprofile==''? profile=dogProfile:profile=dogprofile;
-DogModel dog= DogModel( id: id,profile: profile, name: name, dob: dob, month: month, breed: breed, certificate: dogcertificate);
-try {
+DogModel dog= DogModel( id: id,profile: profile, name: name, dob: dob, month: month, breed: breed, certificate: dogcertificate,updateTym: updatTym,training: traininglist);
+
+  
   print('function called');
     await firestore.collection("dogs").doc(auth.currentUser?.uid).collection('thisUsersDogs').doc(id).update(dog.toMap());
   getDogFromDB();
 } catch (e) {
   print("the error is $e");
 }
+}
+
+updateTrainingOfDog(int nowTryng,String id,String currentTym)async{
+  var date='';
+  List<dynamic> traningList=[];
+  double traingTym=0.0;
+  double currentTraing=nowTryng/1800;
+  try {
+    DocumentSnapshot<Map<String, dynamic>> thisDog=await firestore.collection("dogs").doc(auth.currentUser?.uid).collection("thisUsersDogs").doc(id).get();
+    var data=thisDog.data();
+    
+    date=data?['last_update_time'];
+    traningList=data?['training'];
+   if (date!=currentTym) {
+    date=currentTym;
+      if (traningList.length>7) {
+      traningList.clear();
+      traningList=[currentTraing];
+    }else{
+      traningList.add(currentTraing);
+    }
+   }else{
+    traingTym=traningList.removeLast();
+    if (currentTraing<=1) { 
+      traingTym=traingTym+currentTraing;
+    traningList.add(traingTym);
+    }else{
+      return;
+    }
+   }
+   await firestore.collection("dogs").doc(auth.currentUser?.uid).collection("thisUsersDogs").doc(id).update({"last_update_time":date,"training":traningList});
+   
+  } catch (e) {
+    print("the error $e");
+  }
 }
 
 // EVENT FUNCTIONS
@@ -197,7 +240,9 @@ var imgFile='';
      _imgage = await pickImage(source);
      if (_imgage!=null) {
       dogprofile =await upLoadImageToStorage('dogprofile',_imgage!);
+     
      }
+     
   }
 
   certificateimgPick(
