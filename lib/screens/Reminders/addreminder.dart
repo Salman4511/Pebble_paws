@@ -128,8 +128,8 @@ TextEditingController reminder = TextEditingController();
                   )
                 ],
               ),
-                const Padding(
-        padding: EdgeInsets.only(top: 20 ,right: 140,left: 20),
+                 Padding(
+        padding: EdgeInsets.only(top: size.height*0.09 ,right: size.width*0.3,left: size.width*0.05),
         child: Column(
          children:[ Text('Set New Reminders',style: TextStyle(
         color: Colors.black ,
@@ -143,8 +143,9 @@ TextEditingController reminder = TextEditingController();
       ),),
     ] )
       ),
+      
               Padding(
-  padding: const EdgeInsets.only(top: 90,right: 40,left: 40),
+  padding:  EdgeInsets.only(top: size.height*0.16,right: 40,left: 40),
   child:   Form(
     key: _formkey,
     child: Column(

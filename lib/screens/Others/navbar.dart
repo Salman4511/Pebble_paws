@@ -69,7 +69,7 @@ class _navPageState extends State<navPage> {
             selectedIndex: _selectedIndex,
             domeHeight: 25 ,
             
-            borderRaduis: BorderRadius.circular(80),
+            borderRaduis: BorderRadius.circular(85),
             
             // specify what will happen when a tab is clicked
             onTabChange: (clickedIndex) {

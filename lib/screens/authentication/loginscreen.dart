@@ -129,120 +129,123 @@ class _loginscreenState extends State<loginscreen> {
                   )
                 ],
               ),
-              Container(
-                 
-                child: Form(
-                  key: formkey,
-                  child:Padding(
-                    padding:  EdgeInsets.only(left: 30,right: 30,
-                    top: size.height*0.1 ),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: emailcontroller,
-                          validator: (text) {
-                            if (text==null || text.isEmpty){
-                              return "Email is Empty";
-                            }
-                             final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
-
-                            if (!emailRegExp.hasMatch(text)) {
-                              return 'Invalid Email';
-                               }
-                            return null;
-                          },
-                           style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            
-                             prefixIcon: Icon(Icons.person,color: Colors.white,),
-                            hintText: 'Email ID',
-                            hintStyle: TextStyle(color: Colors.white),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50)
-                            ),
-                        fillColor: Colors.grey.shade900,
-                        focusColor: Colors.white,
-                        filled: true,
-                          ),
-                         onEditingComplete: () {
-                FocusScope.of(context).nextFocus();
-                            }  
-                        ),
-                        SizedBox(height: 20,),
-                        TextFormField(
-                          controller: passwordcontroller,
-                          validator: (text) {
-                            if (text==null || text.isEmpty){
-                              return "Password is Empty";
-                            }
-                            return null;
-                          
-                          },
-                            
-                            obscureText: showPassword ? false : true,
-                                               
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.security,color: Colors.white,),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50)
-                            ),
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                            fillColor: Colors.grey.shade900,
-                        focusColor: Colors.white,
-                          suffixIcon:  InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    showPassword = !showPassword;
-                                  });
-                                },
-                                child: Icon(
-                                  showPassword
-                                      ? Icons.visibility_off
-                                      : Icons.remove_red_eye,
-                                  color: Colors.white,
-                                ),
+              Padding(
+                padding: EdgeInsets.only(top:size.height*0.09 ),
+                child: Container(
+                   
+                  child: Form(
+                    key: formkey,
+                    child:Padding(
+                      padding:  EdgeInsets.only(left: 30,right: 30,
+                      top: size.height*0.1 ),
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: emailcontroller,
+                            validator: (text) {
+                              if (text==null || text.isEmpty){
+                                return "Email is Empty";
+                              }
+                               final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+              
+                              if (!emailRegExp.hasMatch(text)) {
+                                return 'Invalid Email';
+                                 }
+                              return null;
+                            },
+                             style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              
+                               prefixIcon: Icon(Icons.person,color: Colors.white,),
+                              hintText: 'Email ID',
+                              hintStyle: TextStyle(color: Colors.white),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)
                               ),
+                          fillColor: Colors.grey.shade900,
+                          focusColor: Colors.white,
+                          filled: true,
+                            ),
+                           onEditingComplete: () {
+                  FocusScope.of(context).nextFocus();
+                              }  
                           ),
-                          onEditingComplete: () {
-                FocusScope.of(context).unfocus();
-                            } 
-                          
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: ElevatedButton.icon(onPressed:
-                          (){ if (formkey.currentState!.validate()){
-                            signInWithEmailAndPassword();
-                          }
-                          },
-                             icon:isloading? Text(''): Icon(Icons.check_circle_outline_outlined,color: Colors.white,),
-                              label:isloading? CircularProgressIndicator(color: Colors.white,strokeWidth: 2,)
-                              : Text('Login',style: TextStyle(color: Colors.white),),
-                              style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.grey.shade900)
-                          ),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40,top: 120),
-                          child: Row(
-                            children: [
-                              Text('Does not have an account?'),
-                              TextButton(onPressed: widget.onPressed,
-                            //     Navigator.push(context,
-                            // MaterialPageRoute(builder:(context)=>const signUppage()));
-                            child:Text('SignUp',style: TextStyle(decoration: TextDecoration.underline),))
-                            ],
+                          SizedBox(height: 20,),
+                          TextFormField(
+                            controller: passwordcontroller,
+                            validator: (text) {
+                              if (text==null || text.isEmpty){
+                                return "Password is Empty";
+                              }
+                              return null;
+                            
+                            },
+                              
+                              obscureText: showPassword ? false : true,
+                                                 
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.security,color: Colors.white,),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)
+                              ),
+                              hintText: 'Password',
+                              hintStyle: TextStyle(color: Colors.white),
+                              filled: true,
+                              fillColor: Colors.grey.shade900,
+                          focusColor: Colors.white,
+                            suffixIcon:  InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      showPassword = !showPassword;
+                                    });
+                                  },
+                                  child: Icon(
+                                    showPassword
+                                        ? Icons.visibility_off
+                                        : Icons.remove_red_eye,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                            ),
+                            onEditingComplete: () {
+                  FocusScope.of(context).unfocus();
+                              } 
+                            
                           ),
-                        )
-                      ],
-                       
-                    ),
-                  ), 
-                 
-                ) ,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: ElevatedButton.icon(onPressed:
+                            (){ if (formkey.currentState!.validate()){
+                              signInWithEmailAndPassword();
+                            }
+                            },
+                               icon:isloading? Text(''): Icon(Icons.check_circle_outline_outlined,color: Colors.white,),
+                                label:isloading? CircularProgressIndicator(color: Colors.white,strokeWidth: 2,)
+                                : Text('Login',style: TextStyle(color: Colors.white),),
+                                style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.grey.shade900)
+                            ),),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: size.width*0.15,top: 120),
+                            child: Row(
+                              children: [
+                                Text('Does not have an account?'),
+                                TextButton(onPressed: widget.onPressed,
+                              //     Navigator.push(context,
+                              // MaterialPageRoute(builder:(context)=>const signUppage()));
+                              child:Text('SignUp',style: TextStyle(decoration: TextDecoration.underline),))
+                              ],
+                            ),
+                          )
+                        ],
+                         
+                      ),
+                    ), 
+                   
+                  ) ,
+                ),
               )
             ],
             

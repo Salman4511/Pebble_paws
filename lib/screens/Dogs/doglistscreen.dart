@@ -176,7 +176,7 @@ flex: 2,
 );
        })),
        Padding(
-  padding: const EdgeInsets.only(top: 50),
+  padding:  EdgeInsets.only(top: size.height*0.12),
   child:   ElevatedButton.icon(onPressed: (){Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => addDog()),

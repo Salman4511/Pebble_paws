@@ -113,7 +113,7 @@ forGetThisDog(){
                 )
               ],
             ),
-         SizedBox(height:10,),
+         SizedBox(height:25,),
    Padding(
      padding:EdgeInsets.only(left: size.width*0.08),
      child: Row(
@@ -191,7 +191,7 @@ forGetThisDog(){
   Padding(
   padding:  EdgeInsets.only(right: size.width*0.08  , top: size.height*0.03,left: size.width*0.08),
   child: Container(
-  
+    height: size.height*0.39,
     decoration: BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(20),
@@ -204,7 +204,7 @@ forGetThisDog(){
     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
       Padding(
-    padding: const EdgeInsets.all(10.0),
+    padding: EdgeInsets.all(10),
     child: ValueListenableBuilder(
       valueListenable: dogsList,
       builder: (context, value, child) {

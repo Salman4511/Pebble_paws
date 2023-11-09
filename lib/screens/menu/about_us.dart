@@ -24,7 +24,7 @@ String projectOverview = """
 
 Project Overview:
 
-Project Name: My Dog
+Project Name: Pebble Paws
 Developer: Salmanulfaris.k
 Development Platform: Flutter (Dart Programming Language)
 

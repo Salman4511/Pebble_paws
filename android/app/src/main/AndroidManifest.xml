@@ -1,4 +1,10 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="in.salman.flutter_my_dog1">
+
+
+
+ <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:label="Pebble Paws"
         android:name="${applicationName}"

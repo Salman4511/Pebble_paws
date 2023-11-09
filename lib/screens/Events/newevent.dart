@@ -28,6 +28,8 @@ void _clearTextFields() {
   }
   @override
   Widget build(BuildContext context) {
+            final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white  ,
       body: SingleChildScrollView(
@@ -99,7 +101,7 @@ void _clearTextFields() {
                 ],
               ),
                Padding(
-        padding: const EdgeInsets.only(top: 20 ,right: 190,left: 20),
+        padding:  EdgeInsets.only(top: size.height*0.09 ,right: 190,left: 20),
         child: Column(
          children:[ Text('Set NewEvents',style: TextStyle(
         color: const Color.fromARGB(255, 0, 0, 0) ,
@@ -115,7 +117,7 @@ void _clearTextFields() {
     ] )
       ),
              Padding(
-  padding: const EdgeInsets.only(top: 20),
+  padding:  EdgeInsets.only(top: size.height*0.05),
   child: Container(
     width: 250,
     decoration: BoxDecoration(

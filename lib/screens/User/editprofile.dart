@@ -37,6 +37,8 @@ print(fullname[1]);
 
   @override
   Widget build(BuildContext context) {
+            final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white ,
       body: SingleChildScrollView(
@@ -107,7 +109,7 @@ print(fullname[1]);
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 90,left: 30,right: 30),
+                padding: EdgeInsets.only(top: size.height*0.15,left: 30,right: 30),
                 child: Container(
                   child: Form(
                       child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_dog/db/user/user_db.dart';
+import 'package:flutter_my_dog/screens/User/editprofile.dart';
 
 class userProfile extends StatelessWidget {
   const userProfile({super.key});
@@ -160,7 +161,15 @@ class userProfile extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left:140,top: 60),
-                child: IconButton(onPressed: (){}, icon: Icon(Icons.edit_document)),
+                child: IconButton(onPressed: (){
+                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => editProfile(
+                                            user: thisUser!,
+                                          )),
+                                );
+                }, icon: Icon(Icons.edit_document)),
               )
             ],
           ),

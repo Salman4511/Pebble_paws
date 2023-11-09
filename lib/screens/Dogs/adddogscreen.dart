@@ -48,6 +48,8 @@ final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+            final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white   ,
       body: Container(
@@ -125,7 +127,7 @@ final _formkey = GlobalKey<FormState>();
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 40,left: 30,right: 30),
+                  padding:  EdgeInsets.only(top:size.height*0.15 ,left: 30,right: 30),
                   child: Container(
                     child: Form(
                       key: _formkey,
@@ -292,6 +294,7 @@ final _formkey = GlobalKey<FormState>();
                                 ],
                               ),
                             ),
+                            
                              ElevatedButton(onPressed: (){
                               // getUSerFromDB();
                               if(_formkey.currentState!.validate()){

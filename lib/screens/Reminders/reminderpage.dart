@@ -103,7 +103,7 @@ class _reminderScreenState extends State<reminderScreen> {
               ),
 
               Padding(
-  padding:  EdgeInsets.only(top:size.height*0.03 ,left: 20,right: 20),
+  padding:  EdgeInsets.only(top:size.height*0.06 ,left: 20,right: 20),
   child: Container(
     height: size.height*0.19  ,
     width: size.width*0.9   ,
@@ -257,7 +257,7 @@ Padding(
   
 ),
 Padding(
-  padding:  EdgeInsets.only(top: size.width*0.01),
+  padding:  EdgeInsets.only(top: size.width*0.08),
   child:   ElevatedButton.icon(onPressed: (){
     Navigator.push(
         context,
