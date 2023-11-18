@@ -128,204 +128,209 @@ TextEditingController reminder = TextEditingController();
                   )
                 ],
               ),
+              SizedBox(height: size.height*0.04,),
                  Padding(
-        padding: EdgeInsets.only(top: size.height*0.09 ,right: size.width*0.3,left: size.width*0.05),
-        child: Column(
-         children:[ Text('Set New Reminders',style: TextStyle(
-        color: Colors.black ,
-        fontSize: 30,
-        fontWeight: FontWeight.bold 
-      ),),
-      Text('Here...',style: TextStyle(
-        color: Colors.black ,
-        fontSize: 28,
-        fontWeight: FontWeight.bold 
-      ),),
-    ] )
-      ),
-      
-              Padding(
-  padding:  EdgeInsets.only(top: size.height*0.16,right: 40,left: 40),
-  child:   Form(
-    key: _formkey,
-    child: Column(
-    
-      children: [
-      //   Padding(
-      //     padding: const EdgeInsets.only(),
-      //     child: Column(
-      //      children:[ Text('Set New Reminders',style: TextStyle(
-      //     color: Colors.white 
-      //   ),),
-      //   Text('Here...',style: TextStyle(
-      //     color: Colors.white 
-      //   ),),
-      // ] )
-      //   ),
-        // Text('Set New Reminders',style: TextStyle(
-        //   color: Colors.white 
-        // ),),
-        // Text('Here...',style: TextStyle(
-        //   color: Colors.white 
-        // ),),
-    TextFormField(
-      validator:(value) {
-        if (value!.isEmpty){
-          return "reminder is required";
-        }
-        return null;
-      },
-    controller: reminder,
-    decoration: const InputDecoration(
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
-    ),
-        
-     hintStyle :TextStyle (color: Colors.black,
-     fontWeight: FontWeight.bold ) ,
-    fillColor: Color.fromARGB(255, 146, 145, 145),
-    filled: true,
-           hintText: '    Reminder'
-           ,
-    
-        
-    
-    ),
-    
-        ),
-    
-        const SizedBox(height: 10,),
-         Container(
-          width:500 ,
-          height: 65, 
-          decoration: const BoxDecoration(
-            color:  Color.fromARGB(255, 146, 145, 145),
-             borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
-          ),
-           child: Padding(
-             padding:  EdgeInsets.only(right: size.width*0.2,left: 25,top: 10), 
-             child: DropdownButton<String>( 
-                 value: dropdownValue,
-                 icon: const Icon(Icons.arrow_downward,color: Colors.black  ,),
-                 elevation: 16,
-                 style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16  ),
-              //    underline: Container(
-              // height: 2,
-              // color: Colors.deepPurpleAccent,
-              //    ),
-                 onChanged: (String? value) {
-              // This is called when the user selects an item.
-              setState(() {
-                dropdownValue = value!;
-              });
-                 },
-                 items: list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-                 }).toList(),
-               ),
-           ),
-         ),
-        //  TextField(
-        //   controller: remindertype,
-          
-        //   decoration: InputDecoration(
-        //   border: OutlineInputBorder(
-        //       borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
-        //     ),
-        //     hintStyle :TextStyle (color: Colors.white ,
-        //      fontWeight: FontWeight.bold ) ,
-        //     fillColor: const Color.fromARGB(255, 146, 145, 145),
-        //     filled: true,
-        //    hintText: '    Reminder Type'
-            
-    
-        //   )
-    
-        // ),
-    const SizedBox(height: 10,),
-        TextFormField(
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Date is required';
-            }
-            return null;
-          },
-          keyboardType: TextInputType.none,
-        onTap: ()async {
-        setState(() async{
-           
-         DateTime selectDate =await _selectDate(context);
-         String formattedDate =
-         DateFormat('dd-MM-yyyy - HH-mm-ss').format(selectDate);
-         date.text=formattedDate;
-        });
-        },
-        controller: date,
-          decoration: const InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
-            ),
-            hintText: '    Date',
-            hintStyle :TextStyle (color: Colors.black  ,
-             fontWeight: FontWeight.bold ) ,
-            fillColor: Color.fromARGB(255, 146, 145, 145),
-            filled: true,
-          
-            
-        
-          )
-        
-        ),
-    
-        const SizedBox(height:20,),
-     Row(
-        children: [
-          
-           SizedBox(width:size.width*0.5,),
-      Padding(
-        padding:  EdgeInsets.only(top: 40, ),
-        child: ElevatedButton(
-          onPressed: ()async {
-            if (_formkey.currentState!.validate()){
-            RemainderModel remainder=RemainderModel( reminder: reminder.text, reminderType: dropdownValue, date: date.text);
-            remainderAddToDB(remainder);
-            var fullDate=date.text;
-            var thisDate=fullDate.split('-');
-            print(fullDate);
-            print(thisDate);
-          
-            var data=thisDate.first.trim();
-            var year=thisDate.elementAt(2).trim();
-            var mnth=thisDate.elementAt(1).trim();
-            var hour=thisDate.elementAt(3).trim();
-            var min=thisDate.elementAt(4).trim();
-            var sec=thisDate.last.trim();          
-            Notify.scheduleNewNotification(data,mnth,year,hour,min,sec,reminder.text);
-           Navigator.pop(context);
-          }
-  
-          },
-          child: const Text(
-            'Add',
-            style: TextStyle(color: Color.fromARGB(255, 11, 11, 11),fontWeight: FontWeight.bold ),
-          ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blue ),
-          ),
-        ),
-      ),
-     
-    ],
-  )
-  
-      ],
-    
-    ),
-  ),
-)
+                   padding: EdgeInsets.only(right: size.width*0.3),
+                   child: Container(
+                    height: size.height*0.2,
+                    width: size.width*0.6,
+                     child: Column(
+                      children:[ Text('Set New Reminders',style: TextStyle(
+                     color: Colors.black ,
+                     fontSize: 30,
+                     fontWeight: FontWeight.bold 
+                         ),),
+                         Text('Here...',style: TextStyle(
+                     color: Colors.black ,
+                     fontSize: 28,
+                     fontWeight: FontWeight.bold 
+                         ),),
+                       ] ),
+                   ),
+                 ),
+      SizedBox(height: size.height*0.06,),
+              Form(
+                key: _formkey,
+                child: Container(
+                  width: size.width*0.8,
+                  child: Column(
+                  
+                    children: [
+                    //   Padding(
+                    //     padding: const EdgeInsets.only(),
+                    //     child: Column(
+                    //      children:[ Text('Set New Reminders',style: TextStyle(
+                    //     color: Colors.white 
+                    //   ),),
+                    //   Text('Here...',style: TextStyle(
+                    //     color: Colors.white 
+                    //   ),),
+                    // ] )
+                    //   ),
+                      // Text('Set New Reminders',style: TextStyle(
+                      //   color: Colors.white 
+                      // ),),
+                      // Text('Here...',style: TextStyle(
+                      //   color: Colors.white 
+                      // ),),
+                  TextFormField(
+                    validator:(value) {
+                      if (value!.isEmpty){
+                        return "reminder is required";
+                      }
+                      return null;
+                    },
+                  controller: reminder,
+                  decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
+                  ),
+                      
+                   hintStyle :TextStyle (color: Colors.black,
+                   fontWeight: FontWeight.bold ) ,
+                  fillColor: Color.fromARGB(255, 146, 145, 145),
+                  filled: true,
+                         hintText: '    Reminder'
+                         ,
+                  
+                      
+                  
+                  ),
+                  
+                      ),
+                  
+                      const SizedBox(height: 10,),
+                       Container(
+                        width:500 ,
+                        height: 65, 
+                        decoration: const BoxDecoration(
+                          color:  Color.fromARGB(255, 146, 145, 145),
+                           borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
+                        ),
+                         child: Padding(
+                           padding:  EdgeInsets.only(right: size.width*0.2,left: 25,top: 10), 
+                           child: DropdownButton<String>( 
+                               value: dropdownValue,
+                               icon: const Icon(Icons.arrow_downward,color: Colors.black  ,),
+                               elevation: 16,
+                               style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16  ),
+                            //    underline: Container(
+                            // height: 2,
+                            // color: Colors.deepPurpleAccent,
+                            //    ),
+                               onChanged: (String? value) {
+                            // This is called when the user selects an item.
+                            setState(() {
+                              dropdownValue = value!;
+                            });
+                               },
+                               items: list.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                               }).toList(),
+                             ),
+                         ),
+                       ),
+                      //  TextField(
+                      //   controller: remindertype,
+                        
+                      //   decoration: InputDecoration(
+                      //   border: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
+                      //     ),
+                      //     hintStyle :TextStyle (color: Colors.white ,
+                      //      fontWeight: FontWeight.bold ) ,
+                      //     fillColor: const Color.fromARGB(255, 146, 145, 145),
+                      //     filled: true,
+                      //    hintText: '    Reminder Type'
+                          
+                  
+                      //   )
+                  
+                      // ),
+                  const SizedBox(height: 10,),
+                      TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Date is required';
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.none,
+                      onTap: ()async {
+                      setState(() async{
+                         
+                       DateTime selectDate =await _selectDate(context);
+                       String formattedDate =
+                       DateFormat('dd-MM-yyyy - HH-mm-ss').format(selectDate);
+                       date.text=formattedDate;
+                      });
+                      },
+                      controller: date,
+                        decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(topRight:Radius.circular(50),bottomRight: Radius.circular(50),bottomLeft: Radius.circular(40))
+                          ),
+                          hintText: '    Date',
+                          hintStyle :TextStyle (color: Colors.black  ,
+                           fontWeight: FontWeight.bold ) ,
+                          fillColor: Color.fromARGB(255, 146, 145, 145),
+                          filled: true,
+                        
+                          
+                      
+                        )
+                      
+                      ),
+                  
+                      const SizedBox(height:20,),
+                   Row(
+                      children: [
+                        
+                         SizedBox(width:size.width*0.5,),
+                    Padding(
+                      padding:  EdgeInsets.only(top: 40, ),
+                      child: ElevatedButton(
+                        onPressed: ()async {
+                          if (_formkey.currentState!.validate()){
+                          RemainderModel remainder=RemainderModel( reminder: reminder.text, reminderType: dropdownValue, date: date.text);
+                          remainderAddToDB(remainder);
+                          var fullDate=date.text;
+                          var thisDate=fullDate.split('-');
+                          print(fullDate);
+                          print(thisDate);
+                        
+                          var data=thisDate.first.trim();
+                          var year=thisDate.elementAt(2).trim();
+                          var mnth=thisDate.elementAt(1).trim();
+                          var hour=thisDate.elementAt(3).trim();
+                          var min=thisDate.elementAt(4).trim();
+                          var sec=thisDate.last.trim();          
+                          Notify.scheduleNewNotification(data,mnth,year,hour,min,sec,reminder.text);
+                         Navigator.pop(context);
+                        }
+                  
+                        },
+                        child: const Text(
+                          'Add',
+                          style: TextStyle(color: Color.fromARGB(255, 11, 11, 11),fontWeight: FontWeight.bold ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.blue ),
+                        ),
+                      ),
+                    ),
+                   
+                  ],
+                  )
+                  
+                    ],
+                  
+                  ),
+                ),
+              )
             ]
           )
           ,)

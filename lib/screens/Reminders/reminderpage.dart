@@ -101,174 +101,166 @@ class _reminderScreenState extends State<reminderScreen> {
                   )
                 ],
               ),
-
-              Padding(
-  padding:  EdgeInsets.only(top:size.height*0.06 ,left: 20,right: 20),
-  child: Container(
-    height: size.height*0.19  ,
-    width: size.width*0.9   ,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: Colors.white ,
-    ),
-    child: Column(
-      children: [
-        SizedBox(height: 10,),
-        Text(
-          'Reminder Types',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 10,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  typeIndex=0;
-                });
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => addDog()),
-                // );
-              },
-              child: Container(
-                height: size.height*0.12  ,
-                width: size.width*0.24  ,
+              SizedBox(height: size.height*0.02,),
+              Container(
+                height: size.height*0.19  ,
+                width: size.width*0.9   ,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 243, 220, 151),
-                  borderRadius: BorderRadius.circular(9),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white ,
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height*0.01),
-                      child: Image.network('https://cdn-icons-png.flaticon.com/128/4191/4191422.png', scale:2.1 ,),
+                    SizedBox(height: 10,),
+                    Text(
+                      'Reminder Types',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    Text('vaccine', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
+                    SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              typeIndex=0;
+                            });
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => addDog()),
+                            // );
+                          },
+                          child: Container(
+                            height: size.height*0.12  ,
+                            width: size.width*0.24  ,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 243, 220, 151),
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(top: size.height*0.01),
+                                  child: Image.network('https://cdn-icons-png.flaticon.com/128/4191/4191422.png', scale:2.1 ,),
+                                ),
+                                Text('vaccine', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              typeIndex=1;
+                            });
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => addDog()),
+                            // );
+                          },
+                          child: Container(
+                            height: size.height*0.12  ,
+                            width: size.width*0.24  ,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 249, 164, 151),
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.only(top:size.height*0.02), 
+                                  child: Image.network('https://cdn-icons-png.flaticon.com/128/655/655968.png', scale:2.4  ,),
+                                ),
+                                Text('medicine', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
+                              ],
+                            ),
+                          ),
+                        ),
+                         InkWell(
+                          onTap: () {
+                            setState(() {
+                              typeIndex=2;
+                            });
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => addDog()),
+                            // );
+                          },
+                          child: Container(
+                            height: size.height*0.12  ,
+                            width: size.width*0.24  ,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 178, 251, 255),
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child:  Column(
+                              children: [
+                                Padding(
+                                  padding:EdgeInsets.only(top: size.height*0.015),
+                                  child: Image.network('https://cdn-icons-png.flaticon.com/128/4787/4787175.png', scale:2.2,),
+                                ),
+                                Text('others', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  typeIndex=1;
-                });
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => addDog()),
-                // );
-              },
-              child: Container(
-                height: size.height*0.12  ,
-                width: size.width*0.24  ,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 249, 164, 151),
-                  borderRadius: BorderRadius.circular(9),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(top:size.height*0.02), 
-                      child: Image.network('https://cdn-icons-png.flaticon.com/128/655/655968.png', scale:2.4  ,),
-                    ),
-                    Text('medicine', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
-                  ],
-                ),
-              ),
-            ),
-             InkWell(
-              onTap: () {
-                setState(() {
-                  typeIndex=2;
-                });
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => addDog()),
-                // );
-              },
-              child: Container(
-                height: size.height*0.12  ,
-                width: size.width*0.24  ,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 178, 251, 255),
-                  borderRadius: BorderRadius.circular(9),
-                ),
-                child:  Column(
-                  children: [
-                    Padding(
-                      padding:EdgeInsets.only(top: size.height*0.015),
-                      child: Image.network('https://cdn-icons-png.flaticon.com/128/4787/4787175.png', scale:2.2,),
-                    ),
-                    Text('others', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ),
-),
-Padding(
-  padding: const EdgeInsets.only(top: 10,right: 20,left: 20),
-  child:   Container(
-  
-    height: size.height*0.43     ,
-  
-    width: size.width*0.9   ,
+              SizedBox(height: size.height*0.02,),
+Container(
 
-  
-    decoration: BoxDecoration(
-  
-      color: Colors.white ,
-  
-      borderRadius: BorderRadius.circular(20)
-  
-    ),
-    child: Column(
-      children: [
-        SizedBox(height: 10,),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 110 ),
-              child: Text(
-                'Reminder List',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(width: size.width*0.1,),
-            TextButton(onPressed: (){
-              Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => reminderListScreen()),
-      );
-            }, child: Text('SeeAll'))
-          ],
-        ),
-        Expanded(child: reminderLists[typeIndex])
-      ],
-    ),
-  
+  height: size.height*0.43     ,
+
+  width: size.width*0.9   ,
+
+
+  decoration: BoxDecoration(
+
+    color: Colors.white ,
+
+    borderRadius: BorderRadius.circular(20)
+
   ),
-  
+  child: Column(
+    children: [
+      SizedBox(height: 10,),
+      Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 110 ),
+            child: Text(
+              'Reminder List',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(width: size.width*0.1,),
+          TextButton(onPressed: (){
+            Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => reminderListScreen()),
+    );
+          }, child: Text('SeeAll'))
+        ],
+      ),
+      Expanded(child: reminderLists[typeIndex])
+    ],
+  ),
+
 ),
-Padding(
-  padding:  EdgeInsets.only(top: size.width*0.08),
-  child:   ElevatedButton.icon(onPressed: (){
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => addReminder()),
-      );
-  }, icon: Icon(Icons.add,color: Colors.black ,), label: Text('Add Reminder',
-  style:TextStyle(
-    color: Colors.black 
-  ) ,),
-  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.blue))  ,),
-)
+SizedBox(height: size.height*0.02,),
+ElevatedButton.icon(onPressed: (){
+  Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => addReminder()),
+    );
+}, icon: Icon(Icons.add,color: Colors.black ,), label: Text('Add Reminder',
+style:TextStyle(
+  color: Colors.black 
+) ,),
+style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.blue))  ,)
             ]
           )
           ,)

@@ -101,54 +101,55 @@ void _clearTextFields() {
                 ],
               ),
                Padding(
-        padding:  EdgeInsets.only(top: size.height*0.09 ,right: 190,left: 20),
-        child: Column(
-         children:[ Text('Set NewEvents',style: TextStyle(
-        color: const Color.fromARGB(255, 0, 0, 0) ,
-        fontSize: 30,
-        fontWeight: FontWeight.bold 
-      ),),
-       Text(' Here...',style: TextStyle(
-        color: const Color.fromARGB(255, 0, 0, 0) ,
-        fontSize: 28,
-        fontWeight: FontWeight.bold 
-      ),),
-     
-    ] )
-      ),
-             Padding(
-  padding:  EdgeInsets.only(top: size.height*0.05),
-  child: Container(
-    width: 250,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Stack(
-      alignment: Alignment.center,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(50),
-          child: Image.network('https://thumb.ac-illust.com/cf/cf96c7be7f75b8546ba073915764b302_t.jpeg'),
-        ),
-        IconButton(onPressed:
-          () {
-                     showDialog(context: context, builder: (context) {
-              return AlertDialog(
-            title: Text("Pick image"),
-              actions: [IconButton(onPressed: ()async{
-             await eventimgPick(ImageSource.gallery);
-                              
-             }, icon: Icon(Icons.browse_gallery)),IconButton(onPressed: (){
-                eventimgPick(ImageSource.camera);}, icon: Icon(Icons.camera))],);
-           },);
-                                        
-        }, icon: Icon(Icons.add_a_photo_outlined,),style: ButtonStyle(
-          iconSize: MaterialStatePropertyAll(45)
-        ),)
-      ],
-    ),
-  ),
-),
+                 padding: EdgeInsets.only(right: size.width*0.4),
+                 child: Container(
+                  width: size.width*0.4,
+                   child: Column(
+                    children:[ Text('Set NewEvents',style: TextStyle(
+                   color: const Color.fromARGB(255, 0, 0, 0) ,
+                   fontSize: 30,
+                   fontWeight: FontWeight.bold 
+                       ),),
+                        Text(' Here...',style: TextStyle(
+                   color: const Color.fromARGB(255, 0, 0, 0) ,
+                   fontSize: 28,
+                   fontWeight: FontWeight.bold 
+                       ),),
+                      
+                     ] ),
+                 ),
+               ),
+               SizedBox(height: size.height*0.05,),
+             Container(
+               width: 250,
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(10),
+               ),
+               child: Stack(
+                 alignment: Alignment.center,
+                 children: [
+                   ClipRRect(
+                     borderRadius: BorderRadius.circular(50),
+                     child: Image.network('https://thumb.ac-illust.com/cf/cf96c7be7f75b8546ba073915764b302_t.jpeg'),
+                   ),
+                   IconButton(onPressed:
+                     () {
+                                showDialog(context: context, builder: (context) {
+                         return AlertDialog(
+                       title: Text("Pick image"),
+                         actions: [IconButton(onPressed: ()async{
+                        await eventimgPick(ImageSource.gallery);
+                                         
+                        }, icon: Icon(Icons.browse_gallery)),IconButton(onPressed: (){
+                           eventimgPick(ImageSource.camera);}, icon: Icon(Icons.camera))],);
+                      },);
+                                                   
+                   }, icon: Icon(Icons.add_a_photo_outlined,),style: ButtonStyle(
+                     iconSize: MaterialStatePropertyAll(45)
+                   ),)
+                 ],
+               ),
+             ),
  Padding(
   padding: EdgeInsets.only(top: 30,right: 40,left: 40),
   child:   Form(

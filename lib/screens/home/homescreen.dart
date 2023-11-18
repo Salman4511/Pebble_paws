@@ -91,7 +91,7 @@ forGetThisDog(){
                     child: InkWell(
                       
                       child: Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
+                        width: MediaQuery.of(context).size.width / 1.55,
                         height: 50,
                         child: Align(
                           alignment: Alignment.centerLeft,
@@ -113,7 +113,7 @@ forGetThisDog(){
                 )
               ],
             ),
-         SizedBox(height:25,),
+         SizedBox(height:size.height*0.02,),
    Padding(
      padding:EdgeInsets.only(left: size.width*0.08),
      child: Row(
@@ -188,10 +188,10 @@ forGetThisDog(){
      ],
      ),
    ),
-  Padding(
-  padding:  EdgeInsets.only(right: size.width*0.08  , top: size.height*0.03,left: size.width*0.08),
-  child: Container(
-    height: size.height*0.39,
+   SizedBox(height: size.height*0.01,),
+  Container(
+    height: size.height*0.38,
+    width: size.width*0.85,
     decoration: BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(20),
@@ -226,78 +226,75 @@ forGetThisDog(){
       ),
     ],
     ),
-  ),
-)
+  )
 ,
+SizedBox(height: size.height*0.02,),
 
-Padding(
-  padding: EdgeInsets.only(right: size.width*0.08, top: size.height*0.02,left: size.width*0.08),
-  child: Container(
-    height: size.height*0.24  ,
-    width: size.width*0.9 ,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    color: Colors.white ,
+Container(
+  height: size.height*0.24  ,
+  width: size.width*0.85 ,
+  decoration: BoxDecoration(
+  borderRadius: BorderRadius.circular(20),
+  color: Colors.white ,
+  ),
+  child: Column(
+  children: [
+    SizedBox(height: 10,),
+    Text(
+  'Training Programs',
+  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     ),
-    child: Column(
-    children: [
-      SizedBox(height: 10,),
-      Text(
-    'Training Programs',
-    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    SizedBox(height: 10,),
+    Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    InkWell(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Videos()),
+      );
+    },
+    child: Container(
+      height: size.height*0.16,
+      width: size.width*0.35,
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 255, 222, 162),
+        borderRadius: BorderRadius.circular(9),
       ),
-      SizedBox(height: 10,),
-      Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Videos()),
-        );
-      },
-      child: Container(
-        height: size.height*0.16,
-        width: size.width*0.35,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 222, 162),
-          borderRadius: BorderRadius.circular(9),
-        ),
-        child: Column(
-          children: [
-            Image.network('https://cdn-icons-png.flaticon.com/128/3900/3900369.png', scale:1.4 ,),
-            Text('Trainings', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
-          ],
-        ),
+      child: Column(
+        children: [
+          Image.network('https://cdn-icons-png.flaticon.com/128/3900/3900369.png', scale:1.4 ,),
+          Text('Trainings', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+        ],
       ),
-      ),
-      InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyPdfViewer(pdfPath: "assets/documents/Pet Diet Chart.pdf")),
-        );
-      },
-      child: Container(
-       height: size.height*0.16,
-        width: size.width*0.35,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 253, 135) ,
-          borderRadius: BorderRadius.circular(9),
-        ),
-        child: Column(
-          children: [
-            Image.network('https://cdn-icons-png.flaticon.com/128/8876/8876508.png', scale:1.4,),
-            Text('Food Diet', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
-          ],
-        ),
-      ),
-      ),
-    ],
-      ),
-    ],
     ),
+    ),
+    InkWell(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyPdfViewer(pdfPath: "assets/documents/Pet Diet Chart.pdf")),
+      );
+    },
+    child: Container(
+     height: size.height*0.16,
+      width: size.width*0.35,
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 255, 253, 135) ,
+        borderRadius: BorderRadius.circular(9),
+      ),
+      child: Column(
+        children: [
+          Image.network('https://cdn-icons-png.flaticon.com/128/8876/8876508.png', scale:1.4,),
+          Text('Food Diet', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+        ],
+      ),
+    ),
+    ),
+  ],
+    ),
+  ],
   ),
 )
    

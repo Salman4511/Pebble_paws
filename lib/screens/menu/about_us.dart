@@ -57,7 +57,7 @@ Diet Plans:
 
 Purpose of the Project:
 
-The primary purpose of the "My Dog" project is to provide dog owners with a comprehensive tool to manage and enhance the well-being of their pets. It aims to simplify the process of keeping track of important information, events, and activities related to their dogs.
+The primary purpose of the "Pebble Paws" project is to provide dog owners with a comprehensive tool to manage and enhance the well-being of their pets. It aims to simplify the process of keeping track of important information, events, and activities related to their dogs.
 
 Potential Learning Objectives:
 

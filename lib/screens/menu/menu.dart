@@ -98,11 +98,11 @@ class _addReminderState extends State<MenuScreen> {
                   )
                 ],
               ),
-              SizedBox(height: 30,),
+              SizedBox(height: size.height*0.04,),
               Padding(
-                padding: const EdgeInsets.only(right: 140),
+                padding: EdgeInsets.only(right: size.width*0.17),
                 child: Container(
-                  width: 350,
+                  width: size.width*0.8,
                   height: size.height*0.7  ,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 255, 255, 255),
@@ -145,7 +145,7 @@ class _addReminderState extends State<MenuScreen> {
                 );
                     },
                   ),
-                  SizedBox(height: size.height*0.17 ,),
+                  SizedBox(height: size.height*0.14 ,),
                   ListTile(
                     leading: Icon(FontAwesomeIcons.signOut), 
                     title: Text('Log Out'),
